@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Set up your database (e.g., migrate and create a test database)
                 //sh 'python manage.py migrate'
-                sh 'python manage.py test -v 2' // Run Django tests
+                sh 'python3 manage.py test' // Run Django tests
             }
         }
     }
