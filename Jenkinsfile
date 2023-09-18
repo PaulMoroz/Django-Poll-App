@@ -22,25 +22,25 @@ pipeline {
 
         stage('Removing all instances'){
             steps{
-
+                sh ""
             }
         }
 
         stage('Setting up new EC2'){
             steps{
-                
+                sh ""
             }
         }
 
         stage('Changing IP'){
             steps{
-                
+                sh ""
             }
         }
 
         stage('Configuring VM via ansible'){
             steps{
-                
+                sh ""
             }
         }
     }
