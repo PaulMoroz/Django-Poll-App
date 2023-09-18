@@ -16,11 +16,23 @@ pipeline {
             }
         }
 
-        stage('Database Setup') {
+        stage('Testing') {
             steps {
-                // Set up your database (e.g., migrate and create a test database)
-                //sh 'python manage.py migrate'
-                sh 'python3 manage.py test' // Run Django tests
+                sh 'python3 manage.py test' 
+            }
+        }
+
+        stage('Deploy'){
+            sh "terraform apply -auto-approve"  
+            def instanceIp = sh(script: 'terraform output instance_ip', returnStdout: true).trim()
+            writeFile file: 'inventory.ini', text: "[terraform_instance]\n${instanceIp}\n"
+            sh "cat inventory.ini"
+            sh "chmod 400 my-key.pem"
+        }
+
+        post{
+            success{
+                
             }
         }
     }
