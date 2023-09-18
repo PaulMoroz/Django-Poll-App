@@ -26,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Removing all instances'){
+        stage('Setup infrastructure'){
             steps{
                 sh "python3 merged_test.py"
             }
