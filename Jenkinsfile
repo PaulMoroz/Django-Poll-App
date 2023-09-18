@@ -4,14 +4,12 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Check out your Git repository
                 checkout scm
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Install Python and Django dependencies
                 sh 'pip3 install -r requirements.txt'
             }
         }
@@ -20,6 +18,22 @@ pipeline {
             steps {
                 sh 'python3 manage.py test' 
             }
+        }
+
+        stage('Removing all instances'){
+
+        }
+
+        stage('Setting up new EC2'){
+
+        }
+
+        stage('Changing IP'){
+
+        }
+
+        stage('Configuring VM via ansible'){
+
         }
     }
 /*  
