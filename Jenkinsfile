@@ -28,18 +28,18 @@ pipeline {
 
         stage('Setting up new EC2'){
             steps{
-                sh "terraform validate"
-            }
-        }
-
-        stage('Setting up new EC2'){
-            steps{
                 sh "terraform init"
 
             }
         }
 
-        stage('Setting up new EC2'){
+        stage('Validate terraform'){
+            steps{
+                sh "terraform validate"
+            }
+        }
+
+        stage('Apply terraform'){
             steps{
                 sh "terraform apply"
             }
