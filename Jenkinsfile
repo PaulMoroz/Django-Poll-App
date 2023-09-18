@@ -26,16 +26,16 @@ pipeline {
             }
         }
 
-        stage('Setting up new EC2'){
+        stage('Test'){
             steps{
-                sh "terraform init"
+                sh "pwd"
 
             }
         }
 
-        stage('Test'){
+        stage('Setting up new EC2'){
             steps{
-                sh "pwd"
+                sh "terraform init"
 
             }
         }
@@ -47,7 +47,7 @@ pipeline {
 
         stage('Apply terraform'){
             steps{
-                sh "terraform apply"
+                sh "terraform apply --auto-approve"
             }
         }
 
