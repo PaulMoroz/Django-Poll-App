@@ -47,7 +47,7 @@ pipeline {
 
         stage('Apply terraform'){
             steps{
-                sh "terraform apply --auto-approve"
+                sh "/opt/homebrew/bin/terraforms apply --auto-approve"
             }
         }
 
