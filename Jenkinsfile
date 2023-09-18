@@ -33,11 +33,17 @@ pipeline {
             }
         }
 
-        stage('Validate terraform'){
+        stage('Test'){
+            steps{
+                sh "pwd"
+
+            }
+        }
+        /*stage('Validate terraform'){
             steps{
                 sh "terraform validate"
             }
-        }
+        }*/
 
         stage('Apply terraform'){
             steps{
