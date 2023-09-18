@@ -22,13 +22,15 @@ pipeline {
 
         stage('Removing all instances'){
             steps{
-                sh ""
+                sh "python3 remove_all_instances.py"
             }
         }
 
         stage('Setting up new EC2'){
             steps{
-                sh ""
+                sh "terraform init"
+                sh "terraform validate"
+                sh "terraform apply"
             }
         }
 
