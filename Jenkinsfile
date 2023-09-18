@@ -31,11 +31,5 @@ pipeline {
             sh "chmod 400 my-key.pem"
         }
 */
-        post{
-            success{
-                
-            }
-        }
-    
 
 }
