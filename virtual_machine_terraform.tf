@@ -16,7 +16,7 @@ resource "tls_private_key" "my_key" {
 
 # Output the private key to a file
 resource "local_file" "private_key" {
-  filename = "/Users/pavlo/Desktop/Django-Poll-App/my-key.pem" # Specify the desired file name
+  filename = "my-key.pem" # Specify the desired file name
   content  = tls_private_key.my_key.private_key_pem
 }
 
