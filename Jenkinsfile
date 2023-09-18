@@ -39,14 +39,16 @@ pipeline {
 
             }
         }
-        /*stage('Validate terraform'){
+        stage('Validate terraform'){
             steps{
-                sh "terraform validate"
+                sh "/opt/homebrew/bin/terraform destroy --auto-approve"
             }
-        }*/
+        }
+
 
         stage('Apply terraform'){
             steps{
+                
                 sh "/opt/homebrew/bin/terraform apply --auto-approve"
             }
         }
