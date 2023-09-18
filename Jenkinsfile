@@ -35,7 +35,7 @@ pipeline {
 
         stage('Setting up new EC2'){
             steps{
-                sh "terraform init"
+                sh "/opt/homebrew/bin/terraform init"
 
             }
         }
