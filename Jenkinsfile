@@ -21,7 +21,7 @@ pipeline {
                 sh 'python3 manage.py test' 
             }
         }
-
+/*
         stage('Deploy'){
             sh "terraform apply -auto-approve"  
             def instanceIp = sh(script: 'terraform output instance_ip', returnStdout: true).trim()
@@ -29,7 +29,7 @@ pipeline {
             sh "cat inventory.ini"
             sh "chmod 400 my-key.pem"
         }
-
+*/
         post{
             success{
                 
