@@ -9,8 +9,15 @@ elastic_ip = '16.171.222.150'  # Replace with your Elastic IP address
 instance_name = 'poll-app'
 
 # Check if all required environment variables are set
-if not (aws_access_key and aws_secret_key and region_name):
-    raise ValueError("AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, and AWS_REGION environment variables must be set.")
+if not (aws_access_key):
+    raise ValueError("AWS_ACCESS_KEY_ID environment variables must be set.")
+
+if not (aws_secret_key):
+    raise ValueError("AWS_SECRET_ACCESS_KEY environment variables must be set.")
+
+if not (region_name):
+    raise ValueError("AWS_REGION environment variables must be set.")
+
 
 # Create a Boto3 EC2 client
 ec2_client = boto3.client('ec2', aws_access_key_id=aws_access_key, aws_secret_access_key=aws_secret_key, region_name=region_name)
