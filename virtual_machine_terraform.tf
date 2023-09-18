@@ -67,8 +67,13 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [aws_security_group.ssh.id] # Attach the security group to the instance
 
   tags = {
-    Name = "example-instance"
+    Name = "poll-app"
   }
+}
+
+# resource block for ec2 and eip association #
+resource "aws_eip" "my_eip" {
+  instance = aws_instance.example.id # Associate EIP with the EC2 instance
 }
 
 # Output the instance's public IP for convenience
