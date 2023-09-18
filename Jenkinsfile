@@ -26,42 +26,16 @@ pipeline {
             }
         }
 
-        stage('Test'){
+        stage('Removing all instances'){
             steps{
-                sh "pwd"
-
-            }
-        }
-
-        stage('Setting up new EC2'){
-            steps{
-                sh "/opt/homebrew/bin/terraform init"
-
-            }
-        }
-        stage('Validate terraform'){
-            steps{
-                sh "/opt/homebrew/bin/terraform destroy --auto-approve"
-            }
-        }
-
-
-        stage('Apply terraform'){
-            steps{
-                
-                sh "/opt/homebrew/bin/terraform apply --auto-approve"
-            }
-        }
-
-        stage('Changing IP'){
-            steps{
-                sh ""
+                sh "python3 merged_test.py"
             }
         }
 
         stage('Configuring VM via ansible'){
             steps{
-                sh ""
+                sh "chmod 400 my-key.pem"
+                sh 'nohup ansible-playbook -i "16.171.222.150," -u ec2-user -e "ansible_ssh_private_key_file=my-key.pem" setup.yml'
             }
         }
     }
