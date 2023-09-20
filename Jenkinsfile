@@ -35,7 +35,7 @@ pipeline {
         stage('Configuring VM via ansible'){
             steps{
                 sh "chmod 400 my-key.pem"
-                sh 'nohup ansible-playbook -i "16.170.20.103," -u ec2-user -e "ansible_ssh_private_key_file=my-key.pem" setup.yml'
+                sh 'nohup ansible-playbook -i "16.170.20.103," -u ec2-user -e "ansible_ssh_private_key_file=my-key.pem" setup.yml &'
             }
         }
     }
