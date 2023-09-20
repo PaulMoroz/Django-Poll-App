@@ -31,10 +31,12 @@ while True:
 response = ec2_client.create_key_pair(KeyName=key_name)
 private_key = response['KeyMaterial']
 
-# Save the private key to a file
-with open(f'{key_name}.pem', 'w') as key_file:
-    key_file.write(private_key)
+# Save the private key to a file\
+os.remove(f'my-key.pem')
 
+with open(f'my-key.pem', 'w') as key_file:
+    key_file.write(private_key)
+    print('key is created')
 # Generate a random security group name and check if it already exists
 while True:
     security_group_name = ''.join(secrets.choice(string.ascii_lowercase) for _ in range(10))
