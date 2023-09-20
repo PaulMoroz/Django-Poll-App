@@ -1,0 +1,27 @@
+---
+- name: Deploy Django Application
+  become: yes
+  hosts: all
+  tasks:
+
+    - name: Install necessary packages
+      yum:
+        name: 
+          - git
+          - python3-pip
+  
+    - name: Clone the Django project from Git
+      git:
+        repo: https://github.com/PaulMoroz/Django-Poll-App
+        dest: /test_1
+        clone: yes
+        update: yes
+    
+    - name: Update repository
+      pip: 
+        requirements: /test_1/requirements.txt
+
+    - name: Run Django server
+      command: python3 manage.py runserver
+      args:
+        chdir: /test_1
