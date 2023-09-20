@@ -112,7 +112,7 @@ ec2_client.get_waiter('instance_running').wait(InstanceIds=[instance_id])
 instance = ec2_client.describe_instances(InstanceIds=[instance_id])
 public_ip = instance['Reservations'][0]['Instances'][0]['PublicIpAddress']
 
-elastic_ip = '16.171.222.150'  # Replace with your Elastic IP address
+elastic_ip = '16.170.20.103'  # Replace with your Elastic IP address
 
 
 print(f'Instance ID: {instance_id}')
