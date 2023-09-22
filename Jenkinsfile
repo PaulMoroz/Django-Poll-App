@@ -42,14 +42,8 @@ pipeline {
         stage('Pushing docker to Container registry'){
             steps {
                 sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/k0i2k3v4' 
-            }
-            steps {
                 sh 'docker build -t django-poll-app .' 
-            }
-            steps {
                 sh 'docker tag django-poll-app:latest public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
-            }
-            steps {
                 sh 'docker push public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
             }
         }
