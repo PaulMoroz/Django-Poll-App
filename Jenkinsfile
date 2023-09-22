@@ -19,7 +19,7 @@ pipeline {
                 sh 'python3 manage.py test' 
             }
         }
-
+        /*
         stage('Removing all instances'){
             steps{
                 sh "python3 remove_all_instances.py"
@@ -35,7 +35,22 @@ pipeline {
         stage('Configuring VM via ansible'){
             steps{
                 sh "chmod 400 my-key.pem"
-                sh 'nohup ansible-playbook -i "16.170.20.103," -u ec2-user -e "ansible_ssh_private_key_file=my-key.pem" setup.yml &'
+                sh 'nohup ansible-playbook -i "16.171.222.150," -u ec2-user -e "ansible_ssh_private_key_file=my-key.pem" setup.yml'
+            }
+        }
+        */
+        stage('Pushing docker to Container registry'){
+            steps {
+                sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/k0i2k3v4' 
+            }
+            steps {
+                sh 'docker build -t django-poll-app .' 
+            }
+            steps {
+                sh 'docker tag django-poll-app:latest public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
+            }
+            steps {
+                sh 'docker push public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
             }
         }
     }
