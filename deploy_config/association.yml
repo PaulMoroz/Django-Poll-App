@@ -1,0 +1,20 @@
+---
+- name: Associate Elastic IP with Existing EC2 Instance
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Describe Elastic IPs
+      ec2_eip_info:
+        region: us-east-1  # Replace with your AWS region
+        filters:
+          instance-id: i-1234567890abcdef0  # Replace with your EC2 instance ID
+      register: elastic_ip_info
+
+    - name: Associate Elastic IP
+      ec2:
+        aws_access_key: "{{ your_access_key }}"
+        aws_secret_key: "{{ your_secret_key }}"
+        instance_id: i-1234567890abcdef0  # Replace with your EC2 instance ID
+        region: us-east-1  # Replace with your AWS region
+        public_ip: "{{ elastic_ip_info.results[0].public_ip }}"
+      delegate_to: localhost

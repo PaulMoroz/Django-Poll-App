@@ -1,0 +1,10 @@
+---
+- name: Associate Elastic IP with Existing EC2 Instance
+  hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: Associate Elastic IP
+      ec2_eip_associate:
+        region: eu-north-1  # Replace with your AWS region
+        eip: 16.171.222.150   # Replace with your Elastic IP address
+        instance_id: i-092ec5f1523c775de  # Replace with your EC2 instance ID
