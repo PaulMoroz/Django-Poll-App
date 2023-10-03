@@ -79,7 +79,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'USER': 'postgres',
-        'PASSWORD':  os.environ.get('postgres_pass'),   # Replace with your actual password
+        'PASSWORD':  os.environ.get('POSTGRES_PASSWORD'),   # Replace with your actual password
         'HOST': 'database-1.c3sqglgnipqt.us-east-1.rds.amazonaws.com',  # Replace with your RDS endpoint
         'PORT': '5432',
         'NAME': 'postgres'
