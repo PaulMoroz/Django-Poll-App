@@ -23,7 +23,7 @@ pipeline {
         stage('Pushing docker to Container registry'){
             steps {
                 sh 'aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/k0i2k3v4' 
-                sh 'docker build --build-arg POSTGRES_PASSWORD=\${POSTGRES_PASSWORD} -t django-poll-app .' 
+                sh 'docker build --build-arg POSTGRES_PASSWORD=\${POSTGRES_PASSWORD} -t django-poll-app .'
                 sh 'docker tag django-poll-app:latest public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
                 sh 'docker push public.ecr.aws/k0i2k3v4/django-poll-app:latest' 
             }
@@ -31,7 +31,7 @@ pipeline {
 
         stage('Removing built containers'){
             steps{
-                sh "docker rmi -f \$(docker images -q)"
+                sh "docker rmi \$(docker images -q)"
             }
         }
     }
