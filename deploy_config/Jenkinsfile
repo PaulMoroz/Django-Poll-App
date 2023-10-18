@@ -35,8 +35,10 @@ pipeline {
             }
         }
         
-        stage(){
-            sh "nohup aws ecs update-service --cluster django-cluster-2 --service Django-poll-app-service --region eu-central-1 --force-new-deployment > /dev/null 2>&1 &"
+        stage('Restart the service'){
+            steps{
+                sh "nohup aws ecs update-service --cluster django-cluster-2 --service Django-poll-app-service --region eu-central-1 --force-new-deployment > /dev/null 2>&1 &"
+            }
         }
     }
 
